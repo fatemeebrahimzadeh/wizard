@@ -1,3 +1,40 @@
+:root {
+
+    --primary: #e77e23;
+    --secondary: #e77f239c;
+    --danger: #ff0000;
+    --success: #4BB543;
+    --white: #ffffff;
+    --gray: #808080;
+
+    --step-gutter: 1rem;
+    --step-content-width: 10rem;
+    --step-content-padding-top: .5rem;
+    --step-circle-size: 3rem;
+    --step-circle-border-width: 1px;
+
+    --step-default-circle-color: var(--gray);
+    --step-default-circle-bg-color: transparent;
+    --step-default-circle-border-color: var(--gray);
+    --step-default-text-color: var(--gray);
+
+    --step-active-circle-color: var(--primary);
+    --step-active-circle-bg-color: transparent;
+    --step-active-circle-border-color: var(--primary);
+    --step-active-text-color: var(--primary);
+
+    --step-error-circle-color: var(--danger);
+    --step-error-circle-bg-color: transparent;
+    --step-error-circle-border-color: var(--danger);
+    --step-error-text-color: var(--danger);
+
+    --step-success-circle-color: var(--success);
+    --step-success-circle-bg-color: transparent;
+    --step-success-circle-border-color: var(--success);
+    --step-success-text-color: var(--success);
+
+}
+
 * {
     box-sizing: border-box;
 }
@@ -19,6 +56,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 h2 {
@@ -39,10 +78,6 @@ main {
     flex-direction: column;
 }
 
-.step-container {
-    
-}
-
 .button-container {
     width: 100%;
     display: flex;
@@ -50,8 +85,131 @@ main {
 }
 
 .button-container button {
-    background-color: #e77e23;
+    background-color: var(--primary);
     border-radius: 5px;
     padding: 0.5rem 3rem;
-    color: #ffffff;
+    color: var(--white);
 }
+
+.button-container button:hover {
+    background-color: var(--secondary);
+}
+
+.button-container button:disabled {
+    background-color: var(--gray);
+    cursor: auto;
+}
+
+/* step container */
+
+
+.steps {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    overflow-x: auto;
+}
+
+.step:first-child {
+    margin-left: auto;
+}
+
+.step:last-child {
+    margin-right: auto;
+}
+
+.step:first-of-type .step-circle::before {
+    display: none;
+}
+
+.step:last-of-type .step-content {
+    padding-right: 0;
+}
+
+.step-content {
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: var(--step-content-width);
+    min-width: var(--step-content-width);
+    max-width: var(--step-content-width);
+    padding-top: var(--step-content-padding-top);
+    padding-right: var(--step-gutter);
+}
+
+.step-circle {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--step-circle-size);
+    height: var(--step-circle-size);
+    color: var(--step-default-circle-color);
+    border: var(--step-circle-border-width) solid var(--step-default-circle-border-color);
+    border-radius: 100%;
+    background-color: var(--step-default-circle-bg-color);
+}
+
+.step-circle::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: calc(var(--step-circle-border-width) - 1px);
+    width: calc(var(--step-content-width) + var(--step-gutter) - var(--step-circle-size));
+    height: var(--step-circle-border-width);
+    transform: translate(-100%, -50%);
+    color: var(--step-default-circle-border-color);
+    background-color: currentColor;
+}
+
+.step-text {
+    color: var(step-default-text-color);
+    word-break: break-all;
+    margin-top: 0.25em;
+}
+
+.step-active .step-circle {
+    color: var(--step-active-circle-color);
+    background-color: var(--step-active-circle-bg-color);
+    border-color: var(--step-active-circle-border-color);
+}
+
+.step-active .step-circle::before {
+    color: var(--step-active-circle-border-color);
+}
+
+.step-active .step-text {
+    color: var(--step-active-text-color);
+}
+
+.step-error .step-circle {
+    color: var(--step-error-circle-color);
+    background-color: var(--step-error-circle-bg-color);
+    border-color: var(--step-error-circle-border-color);
+}
+
+.step-error .step-circle::before {
+    color: var(--step-error-circle-border-color);
+}
+
+.step-error .step-text {
+    color: var(--step-error-text-color);
+}
+
+.step-success .step-circle {
+    color: var(--step-success-circle-color);
+    background-color: var(--step-success-circle-bg-color);
+    border-color: var(--step-success-circle-border-color);
+}
+
+.step-success .step-circle::before {
+    color: var(--step-success-circle-border-color);
+}
+
+.step-success .step-text {
+    color: var(--step-success-text-color);
+}
+
+/* step container */
