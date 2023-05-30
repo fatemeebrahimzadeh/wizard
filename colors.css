@@ -1,0 +1,36 @@
+:root {
+
+    --primary: #e77e23;
+    --secondary: #e77f239c;
+    --danger: #ff0000;
+    --success: #4BB543;
+    --white: #ffffff;
+    --gray: #808080;
+
+    --step-gutter: 1rem;
+    --step-content-width: 10rem;
+    --step-content-padding-top: .5rem;
+    --step-circle-size: 3rem;
+    --step-circle-border-width: 1px;
+
+    --step-default-circle-color: var(--gray);
+    --step-default-circle-bg-color: transparent;
+    --step-default-circle-border-color: var(--gray);
+    --step-default-text-color: var(--gray);
+
+    --step-active-circle-color: var(--primary);
+    --step-active-circle-bg-color: transparent;
+    --step-active-circle-border-color: var(--primary);
+    --step-active-text-color: var(--primary);
+
+    --step-error-circle-color: var(--danger);
+    --step-error-circle-bg-color: transparent;
+    --step-error-circle-border-color: var(--danger);
+    --step-error-text-color: var(--danger);
+
+    --step-success-circle-color: var(--success);
+    --step-success-circle-bg-color: transparent;
+    --step-success-circle-border-color: var(--success);
+    --step-success-text-color: var(--success);
+
+}

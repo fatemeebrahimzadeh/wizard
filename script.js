@@ -1,12 +1,15 @@
-// Initial step and step count
+// TODO: 1
+// Initial step number and step count
 let stepNumber = 1;
 let stepCount = 3;
 
+// TODO: 2
 // Get DOM elements
 const steps = document.querySelectorAll(".step");
 const prevBtn = document.querySelector(".prev-button");
 const nextBtn = document.querySelector(".next-button");
 
+// TODO: 10
 // URL handling
 let baseUrl = ""; // Initialize baseUrl as an empty string
 
@@ -33,6 +36,7 @@ const getFromUrl = () => {
   stepNumber = step ? Number(step) : Number(stepNumber);
 };
 
+// TODO: 11
 // Local storage handling
 const getFromLocalStorage = () => {
   try {
@@ -55,6 +59,7 @@ const setStepToLocalStorage = () => {
   }
 };
 
+// TODO: 4
 // Step button event handling
 const isPrevBtnEnable = () => {
   // Check if previous button should be enabled
@@ -72,34 +77,51 @@ const isButtonsEnable = () => {
   nextBtn.disabled = !isNextBtnEnable();
 };
 
+// TODO: 6
 const setCurrentStep = () => {
   // Update current step styles
   isButtonsEnable();
-  for (let index = 1; index <= stepCount; index++) {
-    if (index <= stepNumber) {
+  for (let index = 0; index < stepCount; index++) {
+    // you can use "step-error" or "step-active" too
+    if (index < stepNumber) {
       // Add "step-success" class to completed steps
-      !steps[index - 1].classList.contains("step-success") &&
-        steps[index - 1].classList.add("step-success");
+      !steps[index].classList.contains("step-success") &&
+        steps[index].classList.add("step-success");
     } else {
       // Remove "step-success" class from incomplete steps
-      steps[index - 1].classList.contains("step-success") &&
-        steps[index - 1].classList.remove("step-success");
+      steps[index].classList.contains("step-success") &&
+        steps[index].classList.remove("step-success");
     }
+
+    // danger
+    // if (index < stepNumber - 1) {
+    //   !steps[index ].classList.contains("step-success") && steps[index].classList.add("step-success")
+    // }
+    // else if (index === stepNumber - 1) {
+    //   steps[index].classList.contains("step-success") && steps[index].classList.remove("step-success")
+    //   !steps[index].classList.contains("step-error") && steps[index].classList.add("step-error")
+    // }
+    // else {
+    //   steps[index].classList.contains("step-success") && steps[index].classList.remove("step-success")
+    //   steps[index].classList.contains("step-error") && steps[index].classList.remove("step-error")
+    // }
   }
 };
 
+// TODO: 3
 const buttonEventHandler = (type) => {
   try {
     // Handle button click events
     if (type === "prev") {
+      // avoid doing anything even the user change disable setting throgh inspect
+      // TODO: 5
       if (!isPrevBtnEnable()) return;
       stepNumber -= 1;
-      nextBtn.disabled = !isNextBtnEnable();
     } else {
       if (!isNextBtnEnable()) return;
       stepNumber += 1;
-      prevBtn.disabled = !isPrevBtnEnable();
     }
+    // TODO: 7
     setCurrentStep();
     setStepToLocalStorage();
     // setUrl();
@@ -108,11 +130,14 @@ const buttonEventHandler = (type) => {
   }
 };
 
-// Initialization
-getFromLocalStorage();
-// getFromUrl();
-setCurrentStep();
-
+// TODO: 8
 // Event listeners
 prevBtn.addEventListener("click", () => buttonEventHandler("prev"));
 nextBtn.addEventListener("click", () => buttonEventHandler("next"));
+
+// Initialization
+getFromLocalStorage();
+// getFromUrl();
+// TODO: 9
+setCurrentStep();
+
