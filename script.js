@@ -101,16 +101,16 @@ const buttonEventHandler = (type) => {
       prevBtn.disabled = !isPrevBtnEnable();
     }
     setCurrentStep();
-    // setStepToLocalStorage();
-    setUrl();
+    setStepToLocalStorage();
+    // setUrl();
   } catch (error) {
     console.error("Error handling button event:", error);
   }
 };
 
 // Initialization
-// getFromLocalStorage();
-getFromUrl();
+getFromLocalStorage();
+// getFromUrl();
 setCurrentStep();
 
 // Event listeners
